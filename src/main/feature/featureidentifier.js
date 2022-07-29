@@ -10,6 +10,7 @@ FeatureIdentifier.BREATHE = 'breathe';
 FeatureIdentifier.STARLIGHT = 'starlight';
 FeatureIdentifier.BRIGHTNESS = 'brightness';
 FeatureIdentifier.RIPPLE = 'ripple';
+FeatureIdentifier.REACTIVE_WAVES = 'reactiveWaves';
 FeatureIdentifier.WHEEL = 'wheel';
 FeatureIdentifier.OLD_MOUSE_EFFECTS = 'oldMouseEffects';
 FeatureIdentifier.MOUSE_BRIGHTNESS = 'mouseBrightness';

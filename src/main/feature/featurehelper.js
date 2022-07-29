@@ -1,21 +1,22 @@
+import { RazerDeviceType } from '../device/razerdevicetype';
+import { FeatureBattery } from './featurebattery';
+import { FeatureBreathe } from './featurebreathe';
+import { FeatureBrightness } from './featurebrightness';
+import { FeatureIdentifier } from './featureidentifier';
+import { FeatureMouseBrightness } from './featuremousebrightness';
+import { FeatureMouseDPI } from './featuremousedpi';
+import { FeatureMousePollRate } from './featuremousepollrate';
 import { FeatureNone } from './featurenone';
+import { FeatureOldMouseEffects } from './featureoldmouseeffects';
+import { FeatureReactive } from './featurereactive';
+import { FeatureReactiveWaves } from './featurereactivewaves';
+import { FeatureRipple } from './featureripple';
+import { FeatureSpectrum } from './featurespectrum';
+import { FeatureStarlight } from './featurestarlight';
 import { FeatureStatic } from './featurestatic';
 import { FeatureWaveExtended } from './featurewaveextended';
-import { FeatureSpectrum } from './featurespectrum';
-import { FeatureReactive } from './featurereactive';
-import { FeatureBreathe } from './featurebreathe';
-import { FeatureStarlight } from './featurestarlight';
-import { FeatureRipple } from './featureripple';
-import { FeatureWheel } from './featurewheel';
-import { FeatureBrightness } from './featurebrightness';
 import { FeatureWaveSimple } from './featurewavesimple';
-import { FeatureOldMouseEffects } from './featureoldmouseeffects';
-import { FeatureMouseBrightness } from './featuremousebrightness';
-import { FeatureMousePollRate } from './featuremousepollrate';
-import { FeatureMouseDPI } from './featuremousedpi';
-import { RazerDeviceType } from '../device/razerdevicetype';
-import { FeatureIdentifier } from './featureidentifier';
-import { FeatureBattery } from './featurebattery';
+import { FeatureWheel } from './featurewheel';
 
 export class FeatureHelper {
 
@@ -29,6 +30,7 @@ export class FeatureHelper {
       case FeatureIdentifier.WAVE_EXTENDED: return new FeatureWaveExtended(configuration);
       case FeatureIdentifier.SPECTRUM: return new FeatureSpectrum(configuration);
       case FeatureIdentifier.REACTIVE: return new FeatureReactive(configuration);
+      case FeatureIdentifier.REACTIVE_WAVES: return new FeatureReactiveWaves(configuration);
       case FeatureIdentifier.BREATHE: return new FeatureBreathe(configuration);
       case FeatureIdentifier.STARLIGHT: return new FeatureStarlight(configuration);
       case FeatureIdentifier.BRIGHTNESS: return new FeatureBrightness(configuration);
@@ -56,6 +58,7 @@ export class FeatureHelper {
           new FeatureBreathe(),
           new FeatureStarlight(),
           new FeatureRipple(),
+          new FeatureReactiveWaves(),
           new FeatureWheel(),
           new FeatureBrightness(),
         ];

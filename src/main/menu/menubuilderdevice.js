@@ -1,5 +1,5 @@
-import { FeatureIdentifier } from '../feature/featureidentifier';
 import { RazerDeviceType } from '../device/razerdevicetype';
+import { FeatureIdentifier } from '../feature/featureidentifier';
 
 export function getDeviceMenuFor(application, razerDevice) {
   let deviceMenu = [
@@ -67,6 +67,8 @@ function getFeatureMenuFor(application, device, feature) {
       return getFeatureSpectrum(application, device, feature);
     case FeatureIdentifier.REACTIVE:
       return getFeatureReactive(application, device, feature);
+    case FeatureIdentifier.REACTIVE_WAVES:
+      return getFeatureReactiveWaves(application, device, feature);
     case FeatureIdentifier.BREATHE:
       return getFeatureBreath(application, device, feature);
     case FeatureIdentifier.STARLIGHT:
@@ -216,6 +218,41 @@ function getFeatureRipple(application, device, feature) {
 
   return {
     label: 'Ripple',
+    submenu: [
+      singleItem('Custom color', Object.values(device.settings.customColor1.rgb).slice(0, 3)),
+      singleItem('Custom dual color',
+        Object.values(device.settings.customColor1.rgb).slice(0, 3),
+        Object.values(device.settings.customColor2.rgb).slice(0, 3),
+      ),
+      singleItem('Red', [0xff, 0, 0]),
+      singleItem('Green', [0, 0xff, 0]),
+      singleItem('Blue', [0, 0, 0xff]),
+    ],
+  };
+}
+
+
+function getFeatureReactiveWaves(application, device, feature) {
+
+  if(feature.configuration == null || feature.configuration.rows === -1 ||  feature.configuration.cols === -1) {
+    return {
+      // device missing rows, cols config
+      label: 'Reactive Waves',
+      enabled: false
+    };
+  }
+
+  const singleItem = (label, color, backgroundColor) => {
+    return {
+      label: label,
+      click() {
+        device.setReactiveWavesEffect(feature.configuration, color, backgroundColor);
+      },
+    };
+  };
+
+  return {
+    label: 'Reactive Waves',
     submenu: [
       singleItem('Custom color', Object.values(device.settings.customColor1.rgb).slice(0, 3)),
       singleItem('Custom dual color',

@@ -1,12 +1,14 @@
-import { RazerDevice } from './razerdevice';
+import { RazerAnimationReactiveWaves } from '../animation/animationreactivewaves';
 import { RazerAnimationRipple } from '../animation/animationripple';
 import { RazerAnimationWheel } from '../animation/animationwheel';
+import { RazerDevice } from './razerdevice';
 
 export class RazerDeviceKeyboard extends RazerDevice {
   constructor(addon, settingsManager, stateManager, razerProperties) {
     super(addon, settingsManager, stateManager, razerProperties);
     this.rippleAnimation = null;
     this.wheelAnimation = null;
+    this.reactiveWavesAnimation = null;
   }
 
   async init() {
@@ -22,7 +24,7 @@ export class RazerDeviceKeyboard extends RazerDevice {
   }
 
   getSerializeIgnoredProperties() {
-    return super.getSerializeIgnoredProperties().concat(['rippleAnimation', 'wheelAnimation']);
+    return super.getSerializeIgnoredProperties().concat(['rippleAnimation', 'wheelAnimation','reactiveWavesAnimation']);
   }
 
   getState() {
@@ -43,6 +45,9 @@ export class RazerDeviceKeyboard extends RazerDevice {
     }
     if(this.wheelAnimation != null) {
       this.wheelAnimation.destroy();
+    }
+    if(this.reactiveWavesAnimation != null) {
+      this.reactiveWavesAnimation.destroy();
     }
   }
 
@@ -108,6 +113,9 @@ export class RazerDeviceKeyboard extends RazerDevice {
     if(this.wheelAnimation != null) {
       this.wheelAnimation.stop();
     }
+    if (this.reactiveWavesAnimation != null) {
+      this.reactiveWavesAnimation.stop();
+    }
   }
 
   setRippleEffect(featureConfiguration, color, backgroundColor) {
@@ -115,6 +123,13 @@ export class RazerDeviceKeyboard extends RazerDevice {
     this.stopAnimations();
     this.rippleAnimation = new RazerAnimationRipple(this, featureConfiguration, color, backgroundColor);
     this.rippleAnimation.start();
+  }
+
+  setReactiveWavesEffect(featureConfiguration, color, backgroundColor) {
+    this.setModeState('reactiveWaves', [featureConfiguration, color, backgroundColor]);
+    this.stopAnimations();
+    this.reactiveWavesAnimation = new RazerAnimationReactiveWaves(this, featureConfiguration, color, backgroundColor);
+    this.reactiveWavesAnimation.start();
   }
 
   setWheelEffect(featureConfiguration, speed) {

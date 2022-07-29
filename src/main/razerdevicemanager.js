@@ -1,14 +1,14 @@
 import addon from '../driver';
+import { RazerDevice } from './device/razerdevice';
+import { RazerDeviceAccessory } from './device/razerdeviceaccessory';
+import { RazerDeviceEgpu } from './device/razerdeviceegpu';
+import { RazerDeviceHeadphone } from './device/razerdeviceheadphone';
 import { RazerDeviceKeyboard } from './device/razerdevicekeyboard';
 import { RazerDeviceMouse } from './device/razerdevicemouse';
 import { RazerDeviceMouseDock } from './device/razerdevicemousedock';
 import { RazerDeviceMouseMat } from './device/razerdevicemousemat';
-import { RazerDeviceEgpu } from './device/razerdeviceegpu';
-import { RazerDeviceHeadphone } from './device/razerdeviceheadphone';
-import { RazerDeviceAccessory } from './device/razerdeviceaccessory';
-import { RazerDevice } from './device/razerdevice';
-import { FeatureHelper } from './feature/featurehelper';
 import { RazerDeviceType } from './device/razerdevicetype';
+import { FeatureHelper } from './feature/featurehelper';
 
 /**
  * Responsible to fetch all attached Razer devices and map them to RazerDevice instances with features
